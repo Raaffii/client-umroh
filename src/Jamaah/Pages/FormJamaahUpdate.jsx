@@ -12,7 +12,7 @@ export default function FormJamaahUpdate({ data, setList, setModalUpdate, setMes
   const [tempatLahir, setTempatLahir] = useState("");
   const [tanggalLahir, setTanggalLahir] = useState("");
   const [alamat, setAlamat] = useState("");
-  const [jenisKelamin, setJenisKelamin] = useState("");
+  const [jenisKelamin, setJenisKelamin] = useState(data.jenisKelamin);
   const [nomerPaspor, setNomerPaspor] = useState("");
   const [masaPaspor, setMasaPaspor] = useState("");
   const [paket, setPaket] = useState(data.paket);
@@ -178,12 +178,12 @@ export default function FormJamaahUpdate({ data, setList, setModalUpdate, setMes
                   name='jenisKelamin'
                   value='laki-laki'
                   onChange={(e) => setJenisKelamin(e.target.value)}
-                  checked={data.jenisKelamin === "laki-laki"} // Menggunakan ekspresi Boolean
+                  checked={jenisKelamin === "laki-laki"} // Menggunakan ekspresi Boolean
                 />
                 <label htmlFor='laki-laki'>Laki-laki</label>
               </div>
               <div>
-                <input type='radio' id='perempuan' name='jenisKelamin' value='perempuan' onChange={(e) => setJenisKelamin(e.target.value)} checked={data.jenisKelamin === "perempuan"} />
+                <input type='radio' id='perempuan' name='jenisKelamin' value='perempuan' onChange={(e) => setJenisKelamin(e.target.value)} checked={jenisKelamin === "perempuan"} />
                 <label htmlFor='perempuan'>Perempuan</label>
               </div>
             </div>
