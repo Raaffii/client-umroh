@@ -146,6 +146,28 @@ export default function Jammah() {
     fetchProducts();
   }, []);
 
+  const reload = () => {
+    setLoading(true);
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("https://server-umroh-api.vercel.app/api/getdata");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const responseData = await response.json();
+        setList(responseData.data);
+      } catch (err) {
+        setError(err.message); // Menangani error jika ada
+      } finally {
+        setLoading(false); // Set loading ke false setelah data diambil
+      }
+    };
+
+    fetchProducts();
+  };
+
   const [currentPage, setCurrentPage] = useState(1);
   const [modal, setModal] = useState(false);
   const itemsPerPage = 10;
@@ -181,6 +203,10 @@ export default function Jammah() {
       </button>
       <button onClick={toggleModal} className='btn btn-link '>
         <i className='icon-square-plus'></i> Tambah Data
+      </button>
+      <button type='button' class='btn btn-outline-danger btn-icon-text' onClick={reload}>
+        <i class='icon-reload'></i>
+        Reload
       </button>
       {message === 2 && (
         <p className='text-light bg-dark pl-1 d-flex justify-content-between align-items-center'>
